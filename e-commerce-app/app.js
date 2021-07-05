@@ -1,23 +1,52 @@
 const express = require('express')
-
-const app =  express()
+const mongoose = require('mongoose')
+const app = express()
 const port = process.env.port || 8080;
+const Brand = require('./models/brand')
+mongoose.connect(
+    "mongodb+srv://puku:root@cluster1.lz6mq.mongodb.net/e-comm-data",
+    function (err) {
+        if (err) {
+            console.log("Db is not connected")
+        } else {
+            console.log("Db connected")
+        }
+    })
 
 //routing
 app.get('/', (req, res) => {
-    return res.json("hello world");
-})
-app.get('/list-of-items', (req, res) => {
-    return res.json("list of items");
-})
-app.get('/name/:n/age/:a', (req, res) => {
-    const name = req.params.n;
-    const age  = req.params.a
-    return res.json({name : name, age: age});
+
+    Brand.find()
+         .exec()
+         .then((result) => {
+             res.send(result)
+         })
+         .catch((err) => {
+             res.json(err);
+         })
+
+//     const brand = new Brand({
+//         title: "THis is title",
+//         description: "This is description",
+//         thumbnail: "https://static.dezeen.com/uploads/2021/06/elon-musk-architect_dezeen_1704_col_0.jpg",
+//         category: "SpaceX, tesla, Boring",
+//         created_At: Date.now().valueOf(),
+//         updated_At: Date.now().valueOf()
+//     })
+//    brand.save()
+//         .then((result) => {
+//             console.log("success")
+//             res.json("data has  been added")
+//         })
+//         .catch((err) => {
+//             console.log("failed")
+//             res.json("server error") 
+//         })
 })
 
-app.listen(port, function() {
+app.listen(port, function () {
     console.log("server is ready : " + port)
 })
+
 
 
