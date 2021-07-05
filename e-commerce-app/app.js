@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const app = express()
 const port = process.env.port || 8080;
 const Brand = require('./models/brand')
+const brandRoute = require('./routes/brand-route')
 mongoose.connect(
     "mongodb+srv://puku:root@cluster1.lz6mq.mongodb.net/e-comm-data",
     function (err) {
@@ -14,12 +15,19 @@ mongoose.connect(
     })
 
 //routing
+app.use('/api/brand', brandRoute)
+app.post('/', (req, res) => {
+    res.json("post route")
+})
+app.patch('/', (req, res) => {
+    res.json("patch route")
+})
 app.get('/', (req, res) => {
 
     Brand.find()
          .exec()
          .then((result) => {
-             res.send(result)
+             res.json(result)
          })
          .catch((err) => {
              res.json(err);
