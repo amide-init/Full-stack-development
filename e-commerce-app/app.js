@@ -2,10 +2,12 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const port = process.env.port || 8080;
+const bodyParser = require('body-parser');
 const Brand = require('./models/brand')
 const brandRoute = require('./routes/brand-route')
+const itemRoute = require('./routes/item-route')
 mongoose.connect(
-    "mongodb+srv://puku:root@cluster1.lz6mq.mongodb.net/e-comm-data",
+    "mongodb+srv://amide:root@e-comm-app-db.p0hwj.mongodb.net/e-comm-data",
     function (err) {
         if (err) {
             console.log("Db is not connected")
@@ -14,43 +16,16 @@ mongoose.connect(
         }
     })
 
-//routing
-app.use('/api/brand', brandRoute)
-app.post('/', (req, res) => {
-    res.json("post route")
-})
-app.patch('/', (req, res) => {
-    res.json("patch route")
-})
-app.get('/', (req, res) => {
 
-    Brand.find()
-         .exec()
-         .then((result) => {
-             res.json(result)
-         })
-         .catch((err) => {
-             res.json(err);
-         })
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
 
-//     const brand = new Brand({
-//         title: "THis is title",
-//         description: "This is description",
-//         thumbnail: "https://static.dezeen.com/uploads/2021/06/elon-musk-architect_dezeen_1704_col_0.jpg",
-//         category: "SpaceX, tesla, Boring",
-//         created_At: Date.now().valueOf(),
-//         updated_At: Date.now().valueOf()
-//     })
-//    brand.save()
-//         .then((result) => {
-//             console.log("success")
-//             res.json("data has  been added")
-//         })
-//         .catch((err) => {
-//             console.log("failed")
-//             res.json("server error") 
-//         })
-})
+app.use('/api/barnd', brandRoute)
+app.use('/api/item', itemRoute)
+
 
 app.listen(port, function () {
     console.log("server is ready : " + port)

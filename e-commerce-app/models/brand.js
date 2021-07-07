@@ -7,8 +7,8 @@ const BrandSchema = new Schema({
     description: {type:String},
     thumbnail: {type: String},
     category: {type:String},
-    created_At: {type:Number},
-    updated_At: {type:Number}
+    created_At: {type:Number, default: Date.now().valueOf()},
+    updated_At: {type:Number, default: Date.now().valueOf()}
 })
 
 module.exports = mongoose.model("Brand", BrandSchema);
