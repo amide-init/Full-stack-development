@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { BrandService } from '../../services/brand/brand.service';
 @Component({
   selector: 'app-brands',
   templateUrl: './brands.component.html',
@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrandsComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private barndService:BrandService) { }
+  brands;
   ngOnInit(): void {
+    this.getBrands();
+  }
+
+  getBrands() {
+    this.barndService.getBrands()
+        .subscribe(res => {
+          if(res['success']){
+            this.brands = res['data']
+          }
+          
+        })
   }
 
 }

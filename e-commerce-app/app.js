@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 const app = express()
 const port = process.env.port || 8080;
 const bodyParser = require('body-parser');
@@ -16,14 +17,14 @@ mongoose.connect(
         }
     })
 
-
+app.use(cors())
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
  
 // parse application/json
 app.use(bodyParser.json())
 
-app.use('/api/barnd', brandRoute)
+app.use('/api/brand', brandRoute)
 app.use('/api/item', itemRoute)
 
 

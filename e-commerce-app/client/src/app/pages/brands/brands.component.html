@@ -1,2 +1,22 @@
-<p>brands works!</p>
-<h1>This is the brand page</h1>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="container p-3 mt-3">
+            <h3>Brans.</h3>
+            <hr>
+            <div class="row">
+                <div class="col-md-4" *ngFor="let brand of brands">
+                    <div class="card">
+                        <img src="{{brand.thumbnail}}" height="100" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">{{brand.title}}</h5>
+                          <p class="card-text">{{brand.description}}</p>
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
