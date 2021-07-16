@@ -7,12 +7,14 @@ import { BrandsComponent } from './pages/brands/brands.component';
 import { ItemsComponent } from './pages/items/items.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BrandItemsComponent } from './pages/brand-items/brand-items.component';
 @NgModule({
   declarations: [
     AppComponent,
     BrandsComponent,
     ItemsComponent,
-    NavbarComponent
+    NavbarComponent,
+    BrandItemsComponent
   ],
   imports: [
     BrowserModule,

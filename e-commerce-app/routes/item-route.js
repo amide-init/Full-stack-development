@@ -14,6 +14,21 @@ router.get('/', (req, res) => {
         })
 })
 
+router.get('/brand/:brandId', (req, res) => {
+    const brandId = req.params.brandId;
+    Item.find({brand: brandId})
+        .exec()
+        .then((result) => {
+            if (result.length < 1) {
+                return res.json({ success: false, message: "No Item Found" });
+            }
+            res.json({ success: true, data: result })
+        })
+        .catch((err) => {
+            res.json({ success: false, message: "Server error" })
+        })
+})
+
 router.get('/:id', (req, res) => {
     const id = req.params.id;
     Item.findById(id)
