@@ -2,6 +2,7 @@ const router = require('express').Router()
 const User = require('../models/user')
 const bycrpt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const authCheck = require('../middleware/check-auth')
 router.post('/login', (req, res) => {
     User.findOne({ email: req.body.email })
         .exec()
@@ -53,12 +54,34 @@ router.post('/signup', (req, res) => {
 
 })
 
-router.get('/', (req, res) => {
- 
+router.get('/', authCheck,  (req, res) => {
+    const userId =  req.userData.userId;
+    User.findById(userId)
+         .exec()
+         .then((result) => {
+             if(result) {
+                 res.json({success : true, data: result})
+             }else {
+                res.json({success : false, message: 'User not found'}) 
+             }
+         }).catch(err => {
+            res.json({success : false, message: 'Mongo Error'}) 
+         })
 })
 
 router.patch('/', (req, res) => {
-    //update
+    const userId =  req.userData.userId;
+    User.updateOne({_id: userId}, {$set: req.body})
+         .exec()
+         .then((_) => {
+             if(result) {
+                 res.json({success : true, message:'profile has been updated'})
+             }else {
+                res.json({success : false, message: 'User not found'}) 
+             }
+         }).catch(err => {
+            res.json({success : false, message: 'Mongo Error'}) 
+         })
 })
 
 

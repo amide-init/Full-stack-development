@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Brand = require('../models/brand');
-
-router.get('/', (req, res) => {
+const authCheck = require('../middleware/check-auth')
+router.get('/', authCheck, (req, res) => {
     Brand.find({})
          .exec()
          .then((result) => {

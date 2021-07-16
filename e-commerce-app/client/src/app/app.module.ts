@@ -8,13 +8,19 @@ import { ItemsComponent } from './pages/items/items.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrandItemsComponent } from './pages/brand-items/brand-items.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
     BrandsComponent,
     ItemsComponent,
     NavbarComponent,
-    BrandItemsComponent
+    BrandItemsComponent,
+    LoginComponent,
+    SignupComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
