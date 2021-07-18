@@ -19,6 +19,10 @@ export class UserService {
       )
   }
 
+  signup() {
+    //complete thi
+  }
+
   getProfile() {
     let headers = new HttpHeaders({
       "Content-Type": "application/json",
