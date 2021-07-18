@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../services/user/user.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +11,8 @@ export class LoginComponent implements OnInit {
   loginForm:FormGroup;
   constructor(
     private fb:FormBuilder,
-    private userService:UserService
+    private userService:UserService,
+    private router:Router
     ) {
     this.loginForm = this.fb.group({
       'email' : [''],
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit {
        .subscribe(res => {
         if(res['success']){
           localStorage.setItem('token', res['token'])
-          alert("login success")
+          this.router.navigate(['/profile'])
         }
        })
   }

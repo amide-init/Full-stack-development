@@ -18,5 +18,16 @@ export class UserService {
       data,
       )
   }
+
+  getProfile() {
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Authorization" : "Bearer " +  localStorage.getItem('token')
+    });
+    return this.http.get(
+      'http://localhost:8080/api/auth',
+      {headers: headers}
+      ) 
+  }
   
 }

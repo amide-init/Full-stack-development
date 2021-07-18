@@ -5,12 +5,15 @@ import { ItemsComponent } from './pages/items/items.component';
 import { BrandItemsComponent } from './pages/brand-items/brand-items.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { ProfileComponent } from'./pages/profile/profile.component';
 const routes: Routes = [
   {path:'brands', component: BrandsComponent},
   {path:'items', component: ItemsComponent},
   {path:'branditems/:brandId', component: BrandItemsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path:'', component: BrandsComponent},
 ];
 
 @NgModule({
