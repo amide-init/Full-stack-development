@@ -6,14 +6,16 @@ import { BrandItemsComponent } from './pages/brand-items/brand-items.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from'./pages/profile/profile.component';
+import { AuthGuard } from './guard/auth/auth.guard';
+import { NotAuthGuard } from './guard/not-auth/not-auth.guard';
 const routes: Routes = [
-  {path:'brands', component: BrandsComponent},
-  {path:'items', component: ItemsComponent},
-  {path:'branditems/:brandId', component: BrandItemsComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path:'', component: BrandsComponent},
+  {path:'brands', component: BrandsComponent, canActivate: [AuthGuard]},
+  {path:'items', component: ItemsComponent, canActivate: [AuthGuard]},
+  {path:'branditems/:brandId', component: BrandItemsComponent, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent, canActivate: [NotAuthGuard]},
+  {path: 'signup', component: SignupComponent, canActivate: [NotAuthGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path:'**', component: BrandsComponent},
 ];
 
 @NgModule({
