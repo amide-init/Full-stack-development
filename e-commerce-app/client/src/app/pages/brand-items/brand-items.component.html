@@ -7,13 +7,13 @@
                 <h3 class="p-5 text-danger">No items in Stock</h3>
             </div>
             <div class="row">
-                <div class="col-md-4" *ngFor="let item of items">
+                <div class="col-md-4" *ngFor="let item of items; index as i ">
                     <div class="card">
                         <img src="{{item.thumbnail}}" height="100" class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">{{item.title}}</h5>
-                          <p class="card-text">{{item.description}}</p>
-                          <a  class="btn btn-warning" routerLink="/branditems/{{item._id}}" >Buy Now</a>
+                          <p class="card-text">{{item.price}}</p>
+                          <a  class="btn btn-warning" (click)="buyNow(i)" >Buy Now</a>
                         </div>
                       </div>
                 </div>

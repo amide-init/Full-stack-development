@@ -25,7 +25,7 @@ router.post('/create', authCheck, (req, res) => {
            })
           myOrder.save()
                  .then((result) => {
-                     res.json({success : true, message: 'Order has been created'})
+                     res.json({success : true,  data:result, message: 'Order has been created'})
                  })
                  .catch((er) => {
                      res.json({success: false, messge: "Mongo error"})
@@ -35,7 +35,7 @@ router.post('/create', authCheck, (req, res) => {
 })
 
 router.post('/payment', (req, res) => {
-
+    //update status 
 })
 
 module.exports =  router;
