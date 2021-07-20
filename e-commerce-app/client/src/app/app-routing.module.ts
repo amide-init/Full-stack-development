@@ -25,23 +25,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 
-
-/*
-ng new client
-cd client 
-create brand componnet under pages folder
-   ng g c pages/brands
-same for items page
-
-open app-routing.module.ts
-
-import component and make your path
-
-create a navbar component
-ng g c components/navbar
-
-add navbar in app.components ts
-use routerlink in navbar
+// rzp_test_XeXDZ1bfrkFjXG
+// ICtqt29GIFRpvRBC0W80TEx5
 
 
-*/

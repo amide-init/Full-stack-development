@@ -8,6 +8,7 @@ const Brand = require('./models/brand')
 const brandRoute = require('./routes/brand-route')
 const itemRoute = require('./routes/item-route')
 const authRoute = require('./routes/auth-route')
+const orderRoute = require('./routes/order-route')
 mongoose.connect(
     "mongodb+srv://amide:root@e-comm-app-db.p0hwj.mongodb.net/e-comm-data",
     function (err) {
@@ -28,6 +29,7 @@ app.use(bodyParser.json())
 app.use('/api/brand', brandRoute)
 app.use('/api/item', itemRoute)
 app.use('/api/auth', authRoute)
+app.use('/api/order', orderRoute)
 
 
 app.listen(port, function () {
