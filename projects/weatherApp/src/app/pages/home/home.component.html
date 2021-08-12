@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card mt-5">
+          <div class="card-header bg-dark text-white">Weather App</div>
+          <div class="card-body text-center">
+            <div class="card-text">City Name : {{data['name']}}</div>
+            <div class="card-text">Country : {{data['sys']['country']}}</div>
+            <div class="card-text">Sunrise : {{data['sys']['sunrise'] | date: ' h:mm a' : '+0530'}} </div>
+            <div class="card-text">Sunset : {{data['sys']['sunset'] | date: ' h:mm a' : '+0530'}}</div>
+            <hr>
+            <div class="card-text">Pressuree : {{data['main']['pressure']}}Pa</div>
+            <div class="card-text">Wind Speed : {{data['wind']['speed']}}m/s </div>
+          </div>
+          <div class="card-footer">
+           <div class="row">
+             <div class="col-md-8">
+              <input class="form-control" [(ngModel)]="cityName" >
+             </div>
+             <div class="col-md-4">
+               <button class="btn btn-outline-dark btn-block" (click)="getWeather()">Fetch</button>
+             </div>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
